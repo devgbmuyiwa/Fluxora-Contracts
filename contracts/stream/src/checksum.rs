@@ -172,9 +172,12 @@
 //! the `transfer_sender` note in `docs/upgrade.md`, which chose to bump for a new
 //! *entry-point*). Of these eight variants, only `IdReservation` gained a
 //! corresponding read view (`get_id_reservation`); that entry-point addition was
-//! deliberately treated the same permissive way. `CONTRACT_VERSION` remains `6`;
-//! this decision may be revisited by maintainers if an integrator-visible reason
-//! to bump surfaces later.
+//! deliberately treated the same permissive way. At the time these eight
+//! variants were appended, `CONTRACT_VERSION` was deliberately left at `6` on
+//! that basis alone. `CONTRACT_VERSION` has since been incremented to its
+//! current value (see [`crate::CONTRACT_VERSION`] and `docs/upgrade.md`) for
+//! unrelated, later, integrator-visible changes — not retroactively because of
+//! these V7 additions.
 //!
 //! ## Invariant: discriminants 0–14 are frozen
 //!
@@ -357,7 +360,7 @@ mod tests {
 
     /// At the V7 freeze point DataKey had 29 variants (0–28).
     #[test]
-    fn v7_datakey_variant_count_at_freeze_was_29() {
+    fn v7_datakey_variant_count_is_29() {
         const V7_FREEZE_VARIANT_COUNT: usize = 29;
         assert_eq!(V7_FREEZE_VARIANT_COUNT, 29);
     }
